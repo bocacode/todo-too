@@ -6,9 +6,11 @@ const { Search } = Input
 function Head({ todoListItems, setTodoListItems }) {
   const { user } = useContext(UserContext)
   const [newTodo, setNewTodo] = useState(null)
-  function addTodo() {    
-    setTodoListItems([...todoListItems, newTodo])
-    localStorage.setItem('todoList', JSON.stringify([...todoListItems, newTodo]))
+  function addTodo() {
+    if(newTodo && newTodo.item && newTodo.item.trim()){
+      setTodoListItems([...todoListItems, newTodo])
+      localStorage.setItem('todoList', JSON.stringify([...todoListItems, newTodo]))
+    }
     setNewTodo(null)
   }
   return (
