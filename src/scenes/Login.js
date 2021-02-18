@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { useHistory } from "react-router-dom"
+import firebase from 'firebase'
 import { Form, Input, Button, Checkbox, Typography } from 'antd'
+import { GoogleOutlined } from '@ant-design/icons'
 import { UserContext } from '../App'
 
 const layout = {
@@ -20,13 +22,30 @@ const tailLayout = {
 
 const Login = () => {
   const [error, setError] = useState(null)
-  const { setUser, firebaseAuth } = useContext(UserContext)
+  const [loading, setLoading] = useState(false)
+  const { setUser } = useContext(UserContext)
   let history = useHistory()
   const onFinish = ({ email, password }) => {
-    firebaseAuth.signInWithEmailAndPassword(email, password)
+    setLoading(true)
+    firebase.auth().signInWithEmailAndPassword(email, password)
       .then(res => {
         setError(null)
         setUser(res.user)
+        setLoading(false)
+        history.push("/")
+      })
+      .catch(err => setError(err.message))
+  }
+  const loginWithGoogle = () => {
+    setLoading(true)
+    const provider = new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signInWithPopup(provider)
+      .then(res => {
+        setError(null)
+        setUser(res.user)
+        console.log(res.user.displayName)
+        console.log(res.user.photoURL)
+        setLoading(false)
         history.push("/")
       })
       .catch(err => setError(err.message))
@@ -74,12 +93,22 @@ const Login = () => {
       </Form.Item>
       <Form.Item {...tailLayout}>
         {error && 
-          <>
-          <Typography.Text type="danger">{error}</Typography.Text>
-          <br />
-          </>}
-        <Button type="primary" htmlType="submit">
+          <React.Fragment>
+            <Typography.Text type="danger">{error}</Typography.Text>
+            <br />
+          </React.Fragment>}
+        <Button type="primary" loading={loading} htmlType="submit">
           Login
+        </Button>
+      </Form.Item>
+      <Form.Item {...tailLayout}>
+        <Button ghost
+          type="primary"
+          icon={<GoogleOutlined />}
+          loading={loading}
+          onClick={() => loginWithGoogle()}
+        >
+          Login with Google
         </Button>
       </Form.Item>
     </Form>
