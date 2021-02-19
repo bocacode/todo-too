@@ -34,7 +34,10 @@ const Login = () => {
         setLoading(false)
         history.push("/")
       })
-      .catch(err => setError(err.message))
+      .catch(err => {
+        setLoading(false)
+        setError(err.message)
+      })
   }
   const loginWithGoogle = () => {
     setLoading(true)
@@ -43,14 +46,16 @@ const Login = () => {
       .then(res => {
         setError(null)
         setUser(res.user)
-        console.log(res.user.displayName)
-        console.log(res.user.photoURL)
         setLoading(false)
         history.push("/")
       })
-      .catch(err => setError(err.message))
+      .catch(err => {
+        setLoading(false)
+        setError(err.message)
+      })
   }
   const onFinishFailed = (errorInfo) => {
+    setLoading(false)
     console.log('Failed:', errorInfo)
     setError('Please input a valid email and password')
   }
