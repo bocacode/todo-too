@@ -20,10 +20,11 @@ function ListItem({ item, todoListItems, setTodoListItems }) {
     )
 }
 
-function TodoList({ todoListItems, setTodoListItems }) {
+function TodoList({ todoListItems, setTodoListItems, loading }) {
   return (
     <List
       size="large"
+      loading={loading}
       bordered
       dataSource={todoListItems}
       renderItem={item =>

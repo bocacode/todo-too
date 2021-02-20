@@ -3,11 +3,12 @@ import { Input, Space, Avatar } from 'antd'
 import { UserContext } from '../../App'
 const { Search } = Input
 
-function Head({ setTodoListItems }) {
+function Head({ setTodoListItems, setLoading }) {
   const { user } = useContext(UserContext)
   const [newTodo, setNewTodo] = useState(null)
   function addTodo() {
     if(newTodo && newTodo.item && newTodo.item.trim()){
+      setLoading(true)
       fetch(`https://todo-bc-api.web.app/tasks/${user.uid}`, {
         method: 'POST',
         headers: {
@@ -16,7 +17,10 @@ function Head({ setTodoListItems }) {
         body: JSON.stringify(newTodo)
       })
       .then(res => res.json())
-      .then(data => setTodoListItems(data))
+      .then(data => {
+        setTodoListItems(data)
+        setLoading(false)
+      })
       .catch(e => console.log(e))
     }
     setNewTodo(null)
