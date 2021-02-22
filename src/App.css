@@ -39,3 +39,6 @@ body {
 .ant-list-bordered {
   border: 2px solid white;
 }
+.ant-list-item {
+  cursor: pointer;
+}

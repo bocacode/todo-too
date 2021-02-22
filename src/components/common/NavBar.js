@@ -10,6 +10,7 @@ function NavBar() {
     firebaseAuth.signOut()
       .then(() => {
         setUser(null)
+        localStorage.setItem('user', null)
       })
       .catch((error) => console.log(error))
   }

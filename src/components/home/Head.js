@@ -21,7 +21,10 @@ function Head({ setTodoListItems, setLoading }) {
         setTodoListItems(data)
         setLoading(false)
       })
-      .catch(e => console.log(e))
+      .catch(e => {
+        setLoading(false)
+        console.log(e)
+      })
     }
     setNewTodo(null)
   }

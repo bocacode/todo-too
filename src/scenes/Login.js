@@ -42,12 +42,16 @@ const Login = () => {
   const loginWithGoogle = () => {
     setLoading(true)
     const provider = new firebase.auth.GoogleAuthProvider()
-    firebase.auth().signInWithPopup(provider)
-      .then(res => {
-        setError(null)
-        setUser(res.user)
-        setLoading(false)
-        history.push("/")
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+      .then(() => {
+        firebase.auth().signInWithPopup(provider)
+          .then(res => {
+            setError(null)
+            setUser(res.user)
+            setLoading(false)
+            localStorage.setItem('user', JSON.stringify(res.user))
+            history.push("/")
+          })
       })
       .catch(err => {
         setLoading(false)

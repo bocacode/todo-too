@@ -16,7 +16,10 @@ function Home() {
           setTodoListItems(data)
           setLoading(false)
         })
-        .catch(e => console.log(e))
+        .catch(e => {
+          setLoading(false)
+          console.log(e)
+        })
     } else {
       setTodoListItems([])
       setLoading(false)
