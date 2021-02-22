@@ -6,7 +6,6 @@ import NavBar from './components/common/NavBar'
 import Home from './scenes/Home'
 import Login from './scenes/Login'
 import Signup from './scenes/Signup'
-import Cards2 from './scenes/Cards2'
 import { firebaseConfig } from './config'
 import './App.css'
 const { Content, Footer } = Layout
@@ -26,7 +25,6 @@ function App() {
           <Content style={{ padding: '0 50px' }}>
             <div className="site-layout-content">
               <Switch>
-                <Route path="/cards" component={Cards2} />
                 <Route path="/login" component={Login} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/" component={Home} />

@@ -24,7 +24,6 @@ function NavBar() {
               <Menu.Item key="2"><Link to="/login">Login</Link></Menu.Item>
               <Menu.Item key="3"><Link to="/signup">Sign Up</Link></Menu.Item>
             </>}
-        <Menu.Item key="5"><Link to="/cards">Cards</Link></Menu.Item>
       </Menu>
     </Header>
   )
