@@ -23,7 +23,7 @@
 }
 
 body {
-  background-image: url('http://www.baltana.com/files/wallpapers-4/Circle-Background-Wallpaper-14170.jpg');
+  background-image: url('./assets/background.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
