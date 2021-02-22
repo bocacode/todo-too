@@ -1,7 +1,9 @@
 .site-layout-content {
   min-height: 280px;
   padding: 24px;
-  background: #fff;
+  background: rgba(255,255,255,0.75);
+  max-width: 600px;
+  margin: auto;
 }
 #components-layout-demo-top .logo {
   float: left;
@@ -21,8 +23,19 @@
 }
 
 body {
-  background-image: url('/assets/Circle-Background-Wallpaper-14170.jpg');
+  background-image: url('http://www.baltana.com/files/wallpapers-4/Circle-Background-Wallpaper-14170.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.ant-layout, .ant-layout-footer {
+  background: none;
+}
+.ant-layout-footer {
+  color: #fff;
+  font-weight: 600;
+}
+.ant-list-bordered {
+  border: 2px solid white;
 }

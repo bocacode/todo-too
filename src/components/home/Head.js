@@ -30,9 +30,8 @@ function Head({ setTodoListItems, setLoading }) {
   const userImage = (!user || !user.photoURL)
     ? null : <Avatar size={48} src={user.photoURL} />
   return (
-    <header style={{ textAlign: 'center' }}>
+    <header style={{ textAlign: 'center', paddingBottom: '40px' }}>
       <h1>Welcome {greeting} {userImage}</h1>
-      <h2>Todo:</h2>
       {user && <Space direction="vertical">
         <Search
           placeholder="New Todo Item"
